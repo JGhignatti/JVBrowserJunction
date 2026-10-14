@@ -9,7 +9,9 @@
 # TEAM_ID is your personal Apple Developer Team ID (a free Apple ID account is
 # enough — find it in Xcode -> Settings -> Accounts). It's passed as a
 # command-line build setting override, so it signs this one archive without
-# ever being written into the checked-in Xcode project.
+# ever being written into the checked-in Xcode project. The project signs to
+# run locally (ad-hoc) so anyone can build it; the archive overrides that with
+# the "Apple Development" identity, which needs the team.
 #
 # If omitted, TEAM_ID is read from a .env file at the repo root (TEAM_ID=...).
 # That file isn't committed — it's just a local reminder since a Team ID isn't
@@ -50,6 +52,7 @@ xcodebuild archive \
   -archivePath "$ARCHIVE_PATH" \
   -destination "generic/platform=macOS" \
   DEVELOPMENT_TEAM="$TEAM_ID" \
+  CODE_SIGN_IDENTITY="Apple Development" \
   CODE_SIGN_STYLE=Automatic
 
 APP_PATH="$BUILD_DIR/JVBrowserJunction.app"

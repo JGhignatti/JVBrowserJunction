@@ -49,7 +49,7 @@ Find your Team ID in Xcode → Settings → Accounts, under your Apple ID. You c
 This:
 
 1. Refuses to run if there are uncommitted changes (so the build always matches a real commit).
-2. Archives the app in Release configuration, passing `DEVELOPMENT_TEAM=<TEAM_ID>` as a command-line build setting override — this signs the archive with your team for this build only, without ever writing your team ID into the checked-in project file.
+2. Archives the app in Release configuration, passing `DEVELOPMENT_TEAM=<TEAM_ID>` and `CODE_SIGN_IDENTITY="Apple Development"` as command-line build setting overrides — this signs the archive with your team for this build only, without ever writing your team ID into the checked-in project file. (The project itself signs to run locally, which is ad-hoc and would ignore the team.)
 3. Copies the exported `.app` out of the archive into `build/`.
 4. Reads the version straight from the built app's `Info.plist`, so the `.dmg` filename and the tag/release name below can never drift out of sync with what you set in step 1. Tags are `X.Y.Z` with no `v` (e.g. `1.0.0`), and release titles add one (`v1.0.0`). A two-part version (`X.Y`) is padded to `X.Y.0`.
 5. Builds the `.dmg` via `npx create-dmg` (no global install) and renames it to `build/JVBrowserJunction_<tag>.dmg` — create-dmg's own default name is based on the display name (`JV Browser Junction X.Y.Z.dmg`).
