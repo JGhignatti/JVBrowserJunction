@@ -1,0 +1,4 @@
+/build/
+/.env
+xcuserdata/
+.DS_Store
