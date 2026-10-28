@@ -18,7 +18,7 @@
   </a>
 </p>
 
-<p align="center"><img src="docs/images/picker.png" width="800"></p>
+<p align="center"><img src="docs/images/picker.png" width="600"></p>
 
 JV Browser Junction lives in the menu bar and acts as your default browser. Click a link anywhere on your Mac and a picker appears, so you choose which browser opens it. Hold <kbd>option</kbd> to open it in the background. From Settings, you can reorder or hide browsers and choose where the picker appears.
 
