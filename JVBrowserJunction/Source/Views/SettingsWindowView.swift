@@ -71,7 +71,6 @@ struct SettingsWindowView: View {
         .onAppear {
             // Shows the Dock icon while the settings window is open.
             NSApp.setActivationPolicy(.regular)
-            NSApp.activate()
         }
         .onDisappear {
             // Back to menu bar only once the settings window is closed.

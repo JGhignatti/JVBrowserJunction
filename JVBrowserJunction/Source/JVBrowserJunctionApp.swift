@@ -21,7 +21,7 @@ struct JVBrowserJunctionApp: App {
         Window("JV Browser Junction", id: K.WindowId.Settings) {
             SettingsWindowView()
         }
-        .defaultSize(width: 760, height: 560)
+        .defaultSize(width: 900, height: 700)
         .windowResizability(.contentSize)
         .restorationDisabled()
         .launchSuppressed()

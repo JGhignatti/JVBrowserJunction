@@ -26,7 +26,20 @@ final class SettingsManager {
     func open() {
         // A menu bar only app cannot bring a window forward until it has a Dock presence.
         NSApp.setActivationPolicy(.regular)
-        openWindow?(id: K.WindowId.Settings)
-        NSApp.activate()
+        NSApp.activate(ignoringOtherApps: true)
+
+        // Menu actions run inside the menu's event loop; present once it has ended.
+        RunLoop.main.perform(inModes: [.default]) {
+            MainActor.assumeIsolated {
+                self.openWindow?(id: K.WindowId.Settings)
+
+                let window = NSApp.windows.first {
+                    $0.identifier?.rawValue.hasPrefix(K.WindowId.Settings) == true
+                }
+                window?.collectionBehavior = [.moveToActiveSpace, .fullScreenAuxiliary]
+                window?.makeKeyAndOrderFront(nil)
+                NSApp.activate(ignoringOtherApps: true)
+            }
+        }
     }
 }
